@@ -20,32 +20,30 @@ public class AadharService {
     private UsersRepository usersRepository;
 
     public ResponseEntity<String> createAadhar(AadharDTO dto) {
-              Optional<Aadhar> aadharOptinal=aadharRepository.findByAadharNumber(dto.getAadharNumber());
-              if(aadharOptinal.isPresent()){
-                  return new ResponseEntity<>("Aadhar already exits",HttpStatus.OK);
+        Optional<Aadhar> aadharOptinal = aadharRepository.findByAadharNumber(dto.getAadharNumber());
+        if (aadharOptinal.isPresent()) {
+            return new ResponseEntity<>("Aadhar already exits", HttpStatus.OK);
 
-              }
-              else{
-                  Aadhar aadhar=new Aadhar();
-                  aadhar.setAadharNumber(dto.getAadharNumber());
-                  aadharRepository.save(aadhar);
-                  return new ResponseEntity<>("Aadhar savad", HttpStatus.CREATED);
-              }
+        } else {
+            Aadhar aadhar = new Aadhar();
+            aadhar.setAadharNumber(dto.getAadharNumber());
+            aadharRepository.save(aadhar);
+            return new ResponseEntity<>("Aadhar savad", HttpStatus.CREATED);
+        }
 
     }
 
     public String updateAadhar(Integer aadharId, AadharDTO dto) {
 
-        try{
-            Optional<Aadhar> aadharIdOptinal=aadharRepository.findById(aadharId);
-            if(aadharIdOptinal.isPresent()){
-                Aadhar       aadhar=aadharIdOptinal.get();
+        try {
+            Optional<Aadhar> aadharIdOptinal = aadharRepository.findById(aadharId);
+            if (aadharIdOptinal.isPresent()) {
+                Aadhar aadhar = aadharIdOptinal.get();
                 aadhar.setAadharNumber(dto.getAadharNumber());
                 aadharRepository.save(aadhar);
                 return "adhar upodated";
             }
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new RuntimeException(e);
 
         }
@@ -56,13 +54,13 @@ public class AadharService {
 
     public List<Aadhar> getAllAadhars() {
 
-             List<Aadhar>   allrecords=aadharRepository.findAll();
-             return allrecords;
+        List<Aadhar> allrecords = aadharRepository.findAll();
+        return allrecords;
     }
 
     public String deleteAadhar(Integer aadharId) {
-        Optional<Aadhar> aadharIdOptinal=aadharRepository.findById(aadharId);
-        if(aadharIdOptinal.isPresent()){
+        Optional<Aadhar> aadharIdOptinal = aadharRepository.findById(aadharId);
+        if (aadharIdOptinal.isPresent()) {
             aadharRepository.deleteById(aadharId);
             return "aadhar deleted";
         }

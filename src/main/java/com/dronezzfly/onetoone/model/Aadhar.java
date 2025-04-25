@@ -1,24 +1,16 @@
 package com.dronezzfly.onetoone.model;
 
-import jakarta.persistence.Entity;
-// default package
-// Generated 21-Apr-2025, 7:11:39 am by Hibernate Tools 6.2.24.Final
-
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-import java.util.List;
-
 @Entity
 @Table(name = "aadhar")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Setter
+@Getter
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "aadharId")
 public class Aadhar {
 
     @Id
@@ -32,6 +24,8 @@ public class Aadhar {
 
     // Optional: mappedBy for bi-directional
     @OneToOne(mappedBy = "aadhar")
+    //@ToString.Exclude
+
     private Users user;
 }
 

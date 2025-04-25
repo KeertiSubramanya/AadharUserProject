@@ -2,11 +2,7 @@ package com.dronezzfly.onetoone.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,11 +11,13 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
     // Define pointcuts for all methods in service layer
     @Pointcut("execution(* com.dronezzfly.onetoone.service.*.*(..))")
-    public void serviceMethods() {}
+    public void serviceMethods() {
+    }
 
     // Define pointcuts for all methods in controller layer
     @Pointcut("execution(* com.dronezzfly.onetoone.controller.*.*(..))")
-    public void controllerMethods() {}
+    public void controllerMethods() {
+    }
 
     // Log before service methods execution
     @Before("serviceMethods()")

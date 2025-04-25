@@ -1,4 +1,5 @@
 package com.dronezzfly.onetoone.service;
+
 import com.dronezzfly.onetoone.dtos.UserDTO;
 import com.dronezzfly.onetoone.model.Aadhar;
 import com.dronezzfly.onetoone.model.Users;
@@ -44,7 +45,7 @@ public class UserService {
         } catch (RuntimeException e) {
             return new ResponseEntity<>("this aadhar already assigned to person", HttpStatus.BAD_REQUEST);
         }
-       return new ResponseEntity<>("addhar id not prasent", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("addhar id not prasent", HttpStatus.BAD_REQUEST);
     }
 
     public List<Users> getAllUsers() {
